@@ -1,0 +1,17 @@
+
+90
+"ID",I,1,4,0,4,0,,,"",,Blank,
+"SPEED",R,5,8,0,4,2,,,"",,Copy,
+"FUNCL",S,13,1,0,2,0,,,"",,Copy,
+"LANES",S,14,1,0,2,0,,,"",,Copy,
+"AB_CAPACITY",I,15,4,0,6,0,,,"",,Copy,
+"BA_CAPACITY",I,19,4,0,6,0,,,"",,Copy,
+"COUNT",I,23,4,0,8,0,,,"",,Copy,
+"TIME",R,27,8,0,10,2,,,"",,Copy,
+"ALPHA",R,35,8,0,10,3,,,"",,Copy,
+"BETA",R,43,8,0,10,3,,,"",,Copy,
+"TYPE",C,51,16,0,16,0,,,"",,Copy,
+"IVTT",R,67,8,0,10,2,,,"",,Copy,
+"WalkTime",R,75,8,0,10,2,,,"",,Copy,
+"Existing",I,83,4,0,10,0,,,"",,Copy,
+"Connector",I,87,4,0,10,0,,,"",,Copy,

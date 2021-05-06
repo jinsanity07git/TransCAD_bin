@@ -1,0 +1,16 @@
+
+148
+"ID",I,1,4,0,12,0,,,"",,Blank,
+"NAME",C,5,35,0,35,0,,,"",,Blank,
+"ALTERNATE NAME",C,40,35,0,35,0,,,"",,Blank,
+"CLASS",C,75,4,0,4,0,,,"",,Blank,
+"LEFT ZIP",I,79,4,0,12,0,,,"",,Blank,
+"RIGHT ZIP",I,83,4,0,12,0,,,"",,Blank,
+"START LEFT",I,87,4,0,12,0,,,"",,Blank,
+"END LEFT",I,91,4,0,12,0,,,"",,Blank,
+"START RIGHT",I,95,4,0,12,0,,,"",,Blank,
+"END RIGHT",I,99,4,0,12,0,,,"",,Blank,
+"PARITY",S,103,2,0,7,0,,,"",,Blank,
+"Number",C,105,5,0,5,0,,,"",,Blank,
+"Label",C,110,35,0,35,0,,,"",,Blank,
+"CCSTYLE",I,145,4,0,12,0,,,"",,Blank,

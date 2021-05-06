@@ -1,0 +1,17 @@
+
+395
+"ID",I,1,4,0,4,0,,,"",,Blank,
+"OBJECTID",I,5,4,0,10,0,,,"",,Blank,
+"SCHID",C,9,8,0,8,0,,,"",,Blank,
+"NAME",C,17,80,0,80,0,,,"",,Blank,
+"ADDRESS",C,97,80,0,80,0,,,"",,Blank,
+"TOWN_MAIL",C,177,25,0,25,0,,,"",,Blank,
+"TOWN",C,202,25,0,25,0,,,"",,Blank,
+"STATE",C,227,2,0,2,0,,,"",,Blank,
+"ZIP",C,229,10,0,10,0,,,"",,Blank,
+"PRINCIPAL",C,239,50,0,50,0,,,"",,Blank,
+"PHONE",C,289,15,0,15,0,,,"",,Blank,
+"FAX",C,304,15,0,15,0,,,"",,Blank,
+"GRADES",C,319,70,0,70,0,,,"",,Blank,
+"TYPE",C,389,3,0,3,0,,,"",,Blank,
+"Enrollment",I,392,4,0,8,0,,,"",,Blank,
