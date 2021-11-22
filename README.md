@@ -4,7 +4,7 @@ A data conversion tool to help user parse "bin" TransCAD file without installing
 ## Guidance
 
 ```
-├── bin2df.py 				## excution script
+├── bin2df.py 				## execution script
 ├── input    					## sample input file
 │   ├── BOSTON.DCB
 │   ├── BOSTON.bin
