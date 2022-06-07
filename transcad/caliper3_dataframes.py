@@ -1,8 +1,9 @@
+import imp
 import sys
 import numpy as np
 import pandas as pd
 import csv
-
+import os 
 # ======================================================================================================
 
 
@@ -11,6 +12,13 @@ def read_dtypes(fname, debug_msgs=False):
         reads d_type of columns from dcb file
     '''
     dcb_fname = fname.split('.bin')[0] + '.DCB'
+    if os.path.exists(dcb_fname):
+        pass
+    else:
+        dcb_fname = fname.split('.bin')[0] + '.dcb'
+
+    assert os.path.exists(dcb_fname), "dcb file not exist"
+
     # --map from transCAD to numpy
     read_type_map = {'C': 'S', 'R': 'f', 'S': 'i', 'F': 'f', 'I': 'i', 'Date': 'i', 'Time': 'i'}
     field_list = []
@@ -21,8 +29,9 @@ def read_dtypes(fname, debug_msgs=False):
             aLine = aLine.strip()
             aLine = aLine.split(',')
             # ---the field definitions have 13 elements
+            # ---the field definitions have 10 elements: for gisdk macro export
             # TODO: (i) currently split all commnas; to ignore ones in quotes, (ii) date, time, date and time is to be interpreted
-            if len(aLine) >= 13:
+            if len(aLine) >= 10:
                 field_dict = {}
                 field_dict['name'] = aLine[0].strip('\'"')
                 # ---intepreting
@@ -58,6 +67,7 @@ def read_dtypes(fname, debug_msgs=False):
                     pass
 
     if debug_msgs:
+        print ("length of field definitions: %s" %len(aLine))
         print('field_infer_list: ')
         for field_item in field_list:
             print(field_item)
