@@ -7,7 +7,7 @@ import os
 # ======================================================================================================
 
 
-def read_dtypes(fname, debug_msgs=False):
+def read_dtypes(fname, is_debug=False):
     '''
         reads d_type of columns from dcb file
     '''
@@ -66,7 +66,7 @@ def read_dtypes(fname, debug_msgs=False):
                 except:
                     pass
 
-    if debug_msgs:
+    if is_debug:
         print ("length of field definitions: %s" %len(aLine))
         print('field_infer_list: ')
         for field_item in field_list:
