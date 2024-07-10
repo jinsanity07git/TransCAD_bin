@@ -7,13 +7,13 @@ import os
 
 
 
-def dkbin_df(filename = "Amarillo Streets.bin", debug_msgs = False):
+def dkbin_df(filename = "Amarillo Streets.bin", is_debug = False):
 
     '''
         how to read a Gisdk binary table into the dataframe and write a dataframe out to a Gisdk binary table
     '''
     # datatypes and row length in bytes
-    dt_list, tcType_list, nBytesPerRow = caliper3_dataframes.read_dtypes(filename, debug_msgs)
+    dt_list, tcType_list, nBytesPerRow = caliper3_dataframes.read_dtypes(filename, is_debug)
 
     CODING = 'windows-1252'
     del_pattern = b'\x91\x8b\x4a\x5c\xbc\xdb\x4f\x14\x63\x23\x7f\x78\xa6\x95\x0d\x27'
@@ -38,14 +38,15 @@ def dkbin_df(filename = "Amarillo Streets.bin", debug_msgs = False):
         file_array = file_array[:pos] + file_array[pos + nBytesPerRow:]
         del_count += 1
     # print (file_array)
-    if debug_msgs:
+    if is_debug:
         print("+++ Infered byte length of row: {0}".format(nBytesPerRow))
         print("+++ Found {0} deleted rows".format(del_count))
 
-    # writing the "corrected/cleaned" byte data
-    if del_count > 0:
-        with open(filename, "wb") as outFile:
-            outFile.write(file_array)
+    if is_debug:
+        # writing the "corrected/cleaned" byte data
+        if del_count > 0:
+            with open(filename, "wb") as outFile:
+                outFile.write(file_array)
 
     # ---Reading the cleaned file as np-array and then df
     dt = np.dtype(dt_list)
@@ -54,7 +55,7 @@ def dkbin_df(filename = "Amarillo Streets.bin", debug_msgs = False):
     # print (dt)
     # print (data)
     df = pd.DataFrame.from_records(data)
-    if debug_msgs:
+    if is_debug:
         print("+++ Number of columns: ", len(dt_list))
         print("+++ Column data types infered: \n", dt_list)
 
@@ -73,7 +74,7 @@ def dkbin_df(filename = "Amarillo Streets.bin", debug_msgs = False):
 
 
 
-def dkbin_csv(filename = "Amarillo Streets.bin", outn = None, debug_msgs = False):
+def dkbin_csv(filename = "Amarillo Streets.bin", outn = None, is_debug = False):
 
     '''
         how to read a Gisdk binary table into the dataframe and write a dataframe out to a Gisdk binary table
@@ -87,7 +88,7 @@ def dkbin_csv(filename = "Amarillo Streets.bin", outn = None, debug_msgs = False
         base = os.path.basename(filename)
         midn = os.path.splitext(base)[0] +'_cleaned.bin'
     print (filename)
-    dt_list, tcType_list, nBytesPerRow = caliper3_dataframes.read_dtypes(filename, debug_msgs)
+    dt_list, tcType_list, nBytesPerRow = caliper3_dataframes.read_dtypes(filename, is_debug)
 
     CODING = 'windows-1252'
     del_pattern = b'\x91\x8b\x4a\x5c\xbc\xdb\x4f\x14\x63\x23\x7f\x78\xa6\x95\x0d\x27'
@@ -112,24 +113,26 @@ def dkbin_csv(filename = "Amarillo Streets.bin", outn = None, debug_msgs = False
         file_array = file_array[:pos] + file_array[pos + nBytesPerRow:]
         del_count += 1
     # print (file_array)
-    if debug_msgs:
+    if is_debug:
         print("+++ Infered byte length of row: {0}".format(nBytesPerRow))
         print("+++ Found {0} deleted rows".format(del_count))
 
     # writing the "corrected/cleaned" byte data
-    if del_count > 0:
-        filename = midn
-        with open(filename, "wb") as outFile:
-            outFile.write(file_array)
+    if is_debug:
+        if del_count > 0:
+            filename = midn
+            with open(filename, "wb") as outFile:
+                outFile.write(file_array)
 
     # ---Reading the cleaned file as np-array and then df
     dt = np.dtype(dt_list)
-    data = np.fromfile(filename, dtype=dt)
+    # data = np.fromfile(filename, dtype=dt)
+    data = np.frombuffer(file_array, dtype=dt)
     # print (dt_list)
     # print (dt)
     # print (data)
     df = pd.DataFrame.from_records(data)
-    if debug_msgs:
+    if is_debug:
         print("+++ Number of columns: ", len(dt_list))
         print("+++ Column data types infered: \n", dt_list)
 

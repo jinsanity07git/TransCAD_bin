@@ -1,17 +1,28 @@
 import os
 from transcad import zjcaliper3df
 
+DEBUG_MODE = False
 
-def convert(fname = "BOSTON" , furl = None):
+def convert(fname="BOSTON", furl=None, fout=None):
+
     ## design for cloud drive url: input from other place
     if furl != None: 
         fname  = os.path.basename(furl).split(".")[0]
-        infname  = os.path.join( os.path.dirname(furl) , '%s.bin'%fname)
-        # print (infname)
-        csv = zjcaliper3df.dkbin_csv(filename=infname,outn='output/%s.csv'%fname,debug_msgs=True)
+        infname  = os.path.join( os.path.dirname(furl) , f'{fname}.bin')
+        
+        if fout == None:
+            fout = f'output/{fname}.csv'
+        else:
+            fout = f'{fout}/{fname}.csv'
+
+        csv = zjcaliper3df.dkbin_csv(filename=infname,
+                                     outn=fout,
+                                     is_debug=DEBUG_MODE)
+        
     else:  ## input from internal input folder
         infname =  os.path.join("input", '%s.bin'%fname)
-        csv = zjcaliper3df.dkbin_csv(filename=infname,outn='output/%s.csv'%fname)
+        csv = zjcaliper3df.dkbin_csv(filename=infname,
+                                     outn=fout)
     print (csv)
 
 if __name__ == '__main__':
